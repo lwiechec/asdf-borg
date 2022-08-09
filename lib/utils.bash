@@ -77,7 +77,7 @@ install_version() {
     rm "$release_file.$ext"
 
     local tool_cmd
-    tool_cmd="bb"
+    tool_cmd="borg"
     test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/bin/$tool_cmd to be executable."
 
     echo "borg $version installation was successful!"
