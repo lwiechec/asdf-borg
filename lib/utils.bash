@@ -47,7 +47,7 @@ download_release() {
   echo >&2 "* Downloading borg release $version..."
 
   local ext url
-  for ext in tar.gz zip; do
+  for ext in tgz; do
     url="$GH_REPO/releases/download/$version/borg-${platform}${arch}.$ext"
     curl "${curl_opts[@]}" -o "$filename.$ext" -C - "$url" >&/dev/null && echo $ext && return
   done
@@ -70,8 +70,7 @@ install_version() {
     local ext=$(download_release "$version" "$release_file")
 
     case "$ext" in
-      tar.gz) tar -xzf "$release_file.$ext" --directory "$install_path/bin" || fail "Could not extract $release_file.$ext" ;;
-      zip) unzip "$release_file.$ext" -d "$install_path/bin" || fail "Could not extract $release_file.$ext" ;;
+      tgz) tar -xzf "$release_file.$ext" --directory "$install_path/bin" || fail "Could not extract $release_file.$ext" ;;
     esac
 
     rm "$release_file.$ext"
