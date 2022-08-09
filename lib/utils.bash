@@ -48,11 +48,9 @@ download_release() {
 
   echo >&2 "* Downloading borg release $version..."
 
-  local ext url
-  for ext in tgz; do
-    url="$GH_REPO/releases/download/$version/borg-${platform}${arch}.$ext"
-    curl "${curl_opts[@]}" -o "$filename.$ext" -C - "$url" >&/dev/null && echo $ext && return
-  done
+  local url
+  url="$GH_REPO/releases/download/$version/borg-${platform}${arch}"
+  curl "${curl_opts[@]}" -o "$filename" -C - "$url" >&/dev/null && return
 
   fail "Could not download $url"
 }
@@ -66,16 +64,10 @@ install_version() {
     fail "asdf-borg supports release installs only"
   fi
 
-  local release_file="$install_path/borg-$version"
+  local release_file="$install_path/borg"
   (
     mkdir -p "$install_path/bin"
-    local ext=$(download_release "$version" "$release_file")
-
-    case "$ext" in
-      tgz) tar -xzf "$release_file.$ext" --directory "$install_path/bin" || fail "Could not extract $release_file.$ext" ;;
-    esac
-
-    rm "$release_file.$ext"
+    download_release "$version" "$release_file"
 
     local tool_cmd
     tool_cmd="borg"
