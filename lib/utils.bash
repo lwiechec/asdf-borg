@@ -64,18 +64,19 @@ install_version() {
     fail "asdf-borg supports release installs only"
   fi
 
-  local release_file="$install_path/borg"
+  local release_file="$install_path/bin/borg"
   (
     mkdir -p "$install_path/bin"
     download_release "$version" "$release_file"
 
     local tool_cmd
     tool_cmd="borg"
+    chmod +x "$install_path/bin/$tool_cmd"
     test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/bin/$tool_cmd to be executable."
 
     echo "borg $version installation was successful!"
   ) || (
-    #rm -rf "$install_path"
+    rm -rf "$install_path"
     fail "An error ocurred while installing borg $version."
   )
 }
