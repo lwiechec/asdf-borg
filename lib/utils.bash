@@ -75,7 +75,7 @@ install_version() {
 
     echo "borg $version installation was successful!"
   ) || (
-    rm -rf "$install_path"
+    #rm -rf "$install_path"
     fail "An error ocurred while installing borg $version."
   )
 }
