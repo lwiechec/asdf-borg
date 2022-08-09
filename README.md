@@ -25,7 +25,7 @@ Plugin:
 asdf plugin add borg https://github.com/lwiechec/asdf-borg.git
 ```
 
-babashka:
+borg:
 
 ```shell
 # Show all installable versions
