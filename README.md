@@ -1,6 +1,6 @@
 <div align="center">
 
-# asdf-borg ![Build](https://github.com/lwiechec/asdf-borg/workflows/Build/badge.svg) ![Lint](https://github.com/lwiechec/asdf-borg/workflows/Lint/badge.svg)
+# asdf-borg [![Build](https://github.com/lwiechec/asdf-borg/workflows/Build/badge.svg)](https://github.com/lwiechec/asdf-borg/actions/workflows/build.yml) [![Lint](https://github.com/lwiechec/asdf-borg/workflows/Lint/badge.svg)](https://github.com/lwiechec/asdf-borg/actions/workflows/lint.yml)
 
 [borg](https://github.com/borgbackup/borg) plugin for the [asdf version manager](https://asdf-vm.com).
 
