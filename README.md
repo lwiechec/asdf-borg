@@ -29,13 +29,13 @@ borg:
 
 ```shell
 # Show all installable versions
-asdf list-all borg
+asdf list all borg
 
 # Install specific version
 asdf install borg latest
 
 # Set a version globally (on your ~/.tool-versions file)
-asdf global borg latest
+asdf set -u borg latest
 
 # Now babashka commands are available
 borg --version
