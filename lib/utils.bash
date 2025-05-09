@@ -48,8 +48,20 @@ download_release() {
 
   echo >&2 "* Downloading borg release $version..."
 
+  local buildver
+  buildver="glibc236"
+
   local url
-  url="$GH_REPO/releases/download/$version/borg-${platform}${arch}"
+  if [ $(echo $version | grep '1\.[012]?') ]; then
+    url="$GH_REPO/releases/download/$version/borg-${platform}${arch}"
+  else
+    if [ $platform = "linux" ]; then
+      url="$GH_REPO/releases/download/$version/borg-${platform}-${buildver}"
+    elif [ $platform = "macos" ]; then
+      url="$GH_REPO/releases/download/$version/borg-${platform}1012"
+    fi
+  fi
+
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" >&/dev/null && return
 
   fail "Could not download $url"
