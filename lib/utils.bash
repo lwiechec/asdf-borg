@@ -53,7 +53,7 @@ download_release() {
 
   local url
   if [ $(echo $version | grep '1\.[012]?') ]; then
-      url="$GH_REPO/releases/download/$version/borg-${platform}${arch}"
+          url="$GH_REPO/releases/download/$version/borg-${platform}${arch}"
   else
       if [ $platform = "linux" ]; then
 	  url="$GH_REPO/releases/download/$version/borg-${platform}-${buildver}"
