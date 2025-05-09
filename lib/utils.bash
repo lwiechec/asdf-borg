@@ -57,7 +57,7 @@ download_release() {
   else
       if [ $platform = "linux" ]; then
 	  url="$GH_REPO/releases/download/$version/borg-${platform}-${buildver}"
-      elif [ $platform = "macos"]; then
+      elif [ $platform = "macos" ]; then
 	  url="$GH_REPO/releases/download/$version/borg-${platform}1012"
       fi
   fi
