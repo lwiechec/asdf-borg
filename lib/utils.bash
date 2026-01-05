@@ -60,6 +60,9 @@ download_release() {
     url="$GH_REPO/releases/download/$version/borg-${platform}-${buildver}-${arch}"
   fi
 
+  #debug
+  echo "URL: $url"
+
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" >&/dev/null && return
 
   fail "Could not download $url"
