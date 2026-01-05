@@ -40,12 +40,16 @@ download_release() {
   local platform
   local buildver
   case "$(uname -s)" in
-    Linux*) platform="linux" ; buildver="glibc235" ;;
+    Linux*) platform="linux" ;;
     Darwin*) platform="macos" ; buildver="14" ;;
     FreeBSD*) platform="freebsd" ; buildver="14" ;;
   esac
 
   local arch=$(uname -m)
+  case "${platform}-${arch}" in
+    linux-x86_64*) buildver="glibc231" ;;
+    linux-arm64*) buildver="glibc235" ;;
+  esac
 
   echo >&2 "* Downloading borg release $version..."
 
@@ -56,7 +60,6 @@ download_release() {
     else
         url="$GH_REPO/releases/download/$version/borg-${platform}64"
     fi
-  else
     url="$GH_REPO/releases/download/$version/borg-${platform}-${buildver}-${arch}"
   fi
 
