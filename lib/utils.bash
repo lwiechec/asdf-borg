@@ -54,8 +54,6 @@ download_release() {
     *) buildver="14" ;;
   esac
 
-  echo >&2 "* Downloading borg release $version..."
-
   local url
   if [ $(echo $version | grep '1\.[012]?') ]; then
     if [ $platform == "linux" ]; then
@@ -65,6 +63,8 @@ download_release() {
     fi
     url="$GH_REPO/releases/download/$version/borg-${platform}-${buildver}-${arch}"
   fi
+
+  echo >&2 "* Downloading borg release $version from $url..."
 
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
