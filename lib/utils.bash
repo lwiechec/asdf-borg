@@ -51,7 +51,10 @@ download_release() {
     case "$platform_arch" in
         linux-x86_64*) buildver="glibc231" ;;
         linux-arm64*) buildver="glibc235" ;;
-        macos-arm64*) buildver="14"; arch="arm64-gh" ;;
+        macos-arm64*)
+            buildver="14"
+            arch="arm64-gh"
+            ;;
         *) buildver="14" ;;
     esac
 
