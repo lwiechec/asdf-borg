@@ -40,8 +40,8 @@ download_release() {
   local platform
   local buildver
   case "$(uname -s)" in
-    Linux*) platform="linux" ; buildver="glibc231" ;;
-    Darwin*) platform="macos" ; buildver="glibc235" ;;
+    Linux*) platform="linux" ; buildver="glibc235" ;;
+    Darwin*) platform="macos" ; buildver="14" ;;
     FreeBSD*) platform="freebsd" ; buildver="14" ;;
   esac
 
