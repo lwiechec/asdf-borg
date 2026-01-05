@@ -9,7 +9,7 @@ on:
 
 jobs:
   plugin_test_ubuntu:
-    name: asdf plugin test
+    name: asdf plugin test (ubuntu)
     runs-on: ubuntu-latest
     steps:
       - name: asdf_plugin_test
@@ -20,7 +20,7 @@ jobs:
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   plugin_test_macos:
-    name: asdf plugin test
+    name: asdf plugin test (macos)
     runs-on: macos-latest
     steps:
       - name: asdf_plugin_test
