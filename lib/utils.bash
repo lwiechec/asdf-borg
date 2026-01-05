@@ -37,29 +37,27 @@ download_release() {
   local version="$1"
   local filename="$2"
 
+  local platform
+  local buildver
   case "$(uname -s)" in
-    Linux*) platform=linux ;;
-    Darwin*) platform=macos ;;
+    Linux*) platform="linux" ; buildver="glibc231" ;;
+    Darwin*) platform="macos" ; buildver="glibc235" ;;
+    FreeBSD*) platform="freebsd" ; buildver="14" ;;
   esac
 
-  case "$(uname -m)" in
-    x86_64) arch=64 ;;
-  esac
+  local arch=$(uname -m)
 
   echo >&2 "* Downloading borg release $version..."
 
-  local buildver
-  buildver="glibc236"
-
   local url
   if [ $(echo $version | grep '1\.[012]?') ]; then
-    url="$GH_REPO/releases/download/$version/borg-${platform}${arch}"
-  else
-    if [ $platform = "linux" ]; then
-      url="$GH_REPO/releases/download/$version/borg-${platform}-${buildver}"
-    elif [ $platform = "macos" ]; then
-      url="$GH_REPO/releases/download/$version/borg-${platform}1012"
+    if [ $platform == "linux" ]; then
+        url="$GH_REPO/releases/download/$version/borg-${platform}new64"
+    else
+        url="$GH_REPO/releases/download/$version/borg-${platform}64"
     fi
+  else
+    url="$GH_REPO/releases/download/$version/borg-${platform}-${buildver}-${arch}"
   fi
 
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" >&/dev/null && return
