@@ -61,10 +61,10 @@ download_release() {
     else
         url="$GH_REPO/releases/download/$version/borg-${platform}64"
     fi
-    url="$GH_REPO/releases/download/$version/borg-${platform}-${buildver}-${arch}"
   fi
+  url="$GH_REPO/releases/download/$version/borg-${platform}-${buildver}-${arch}"
 
-  echo >&2 "* Downloading borg release $version from $url..."
+  echo >&2 "* Downloading borg release $version"
 
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
