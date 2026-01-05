@@ -46,7 +46,9 @@ download_release() {
   esac
 
   local arch=$(uname -m)
-  case "${platform}-${arch}" in
+
+  local platform_arch="${platform}-${arch}"
+  case "$platform_arch" in
     linux-x86_64*) buildver="glibc231" ;;
     linux-arm64*) buildver="glibc235" ;;
   esac
