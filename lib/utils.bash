@@ -41,8 +41,8 @@ download_release() {
   local buildver
   case "$(uname -s)" in
     Linux*) platform="linux" ;;
-    Darwin*) platform="macos" ; buildver="14" ;;
-    FreeBSD*) platform="freebsd" ; buildver="14" ;;
+    Darwin*) platform="macos" ;;
+    FreeBSD*) platform="freebsd" ;;
   esac
 
   local arch=$(uname -m)
@@ -51,6 +51,7 @@ download_release() {
   case "$platform_arch" in
     linux-x86_64*) buildver="glibc231" ;;
     linux-arm64*) buildver="glibc235" ;;
+    *) buildver="14" ;;
   esac
 
   echo >&2 "* Downloading borg release $version..."
